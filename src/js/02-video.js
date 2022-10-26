@@ -10,7 +10,7 @@
 // player.on('play', function () {
 //   console.log('played the video!');
 // });
-// player.on('')
+// player.on('');
 // player.getVideoTitle().then(function (title) {
 //   console.log('title:', title);
 // });
