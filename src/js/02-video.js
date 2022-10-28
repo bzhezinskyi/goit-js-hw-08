@@ -1,16 +1,28 @@
-// import Player from '@vimeo/player';
+import Player from '@vimeo/player';
 
-// const video = document.querySelector('#vimeo-player');
+const iframe = document.querySelector('iframe');
+const player = new Player(iframe);
 
-// const player = new Player('handstick', {
-//   id: 19231868,
-//   width: 640,
-// });
+let time = localStorage.getItem('videoplayer-current-time');
+let second;
 
-// player.on('play', function () {
-//   console.log('played the video!');
-// });
-// player.on('');
-// player.getVideoTitle().then(function (title) {
-//   console.log('title:', title);
-// });
+player.on('timeupdate', function (seconds) {
+  second = seconds.seconds;
+});
+
+player.on(
+  'timeupdate',
+  _.throttle(() => {
+    localStorage.setItem('videoplayer-current-time', second);
+  }, 1000)
+);
+
+player
+  .setCurrentTime(time)
+  .then(function (seconds) {
+    // seconds = the actual time that the player seeked to
+  })
+  .catch(function (error) {
+    switch (error.name) {
+    }
+  });
